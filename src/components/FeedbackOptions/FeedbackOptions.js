@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   ButtonsList,
   Button,
 } from 'components/FeedbackOptions/FeedbackOptions.styled';
 import PropTypes from 'prop-types';
 
-export class FeedbackOptions extends Component {
-  makeButton = () => {
-    return this.props.options.map(option => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  const makeButton = () => {
+    return options.map(option => {
       return (
         <Button
           type="button"
           key={option}
           onClick={() => {
-            this.props.onLeaveFeedback(option);
+            onLeaveFeedback(option);
           }}
         >
           {option}
@@ -21,10 +21,9 @@ export class FeedbackOptions extends Component {
       );
     });
   };
-  render() {
-    return <ButtonsList>{this.makeButton()}</ButtonsList>;
-  }
-}
+
+  return <ButtonsList>{makeButton()}</ButtonsList>;
+};
 
 FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,

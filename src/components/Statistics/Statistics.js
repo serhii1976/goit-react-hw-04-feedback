@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   StatList,
@@ -6,23 +6,21 @@ import {
   StatisticsCalc,
 } from 'components/Statistics/Statistics.styled';
 
-export class Statistics extends Component {
-  render() {
-    return (
-      <div>
-        <StatList>
-          <StatItem>Good: {this.props.good}</StatItem>
-          <StatItem>Neutral: {this.props.neutral}</StatItem>
-          <StatItem>Bad: {this.props.bad}</StatItem>
-        </StatList>
-        <StatisticsCalc>Total: {this.props.total}</StatisticsCalc>
-        <StatisticsCalc>
-          Positive feedback: {this.props.positivePercentage}%
-        </StatisticsCalc>
-      </div>
-    );
-  }
-}
+export const Statistics = props => {
+  const { good, neutral, bad, total, positivePercentage } = props;
+
+  return (
+    <div>
+      <StatList>
+        <StatItem>Good: {good}</StatItem>
+        <StatItem>Neutral: {neutral}</StatItem>
+        <StatItem>Bad: {bad}</StatItem>
+      </StatList>
+      <StatisticsCalc>Total: {total}</StatisticsCalc>
+      <StatisticsCalc>Positive feedback: {positivePercentage}%</StatisticsCalc>
+    </div>
+  );
+};
 
 Statistics.propTypes = {
   good: PropTypes.number.isRequired,
